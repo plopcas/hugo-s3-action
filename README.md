@@ -23,7 +23,7 @@ jobs:
         uses: actions/checkout@master
           
       - name: Deploy site
-        uses: plopcas/hugo-s3@master
+        uses: plopcas/hugo-s3-action@master
 ```
 
 ## Configuration
