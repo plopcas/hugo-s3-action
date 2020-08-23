@@ -7,8 +7,6 @@ GitHub action to run `hugo deploy` provided there is an S3 target configured in 
 ```
 name: Hugo S3
 
-# Controls when the action will run. Triggers the workflow on push or pull request
-# events but only for the master branch
 on:
   push:
     branches: [ master ]
