@@ -23,7 +23,7 @@ jobs:
         uses: actions/checkout@master
           
       - name: Deploy site
-        uses: plopcas/hugo-s3-action@master
+        uses: plopcas/hugo-s3-action@v1.3.0
         env:
           AWS_REGION: 'eu-west-2'
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
