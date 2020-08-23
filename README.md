@@ -24,6 +24,10 @@ jobs:
           
       - name: Deploy site
         uses: plopcas/hugo-s3-action@master
+        env:
+          AWS_REGION: 'eu-west-2'
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 ```
 
 ## Configuration
