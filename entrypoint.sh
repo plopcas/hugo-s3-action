@@ -34,12 +34,6 @@ ${AWS_REGION}
 text
 EOF
 
-# Set it here to avoid logging keys/secrets
-if [ "$DEBUG" = "1" ]; then
-  echo "*** Enabling debug output (set -x)"
-  set -x
-fi
-
 # Install Hugo
 HUGO_VERSION=$(curl -s https://api.github.com/repos/gohugoio/hugo/releases/latest | jq -r '.tag_name')
 mkdir tmp/ && cd tmp/

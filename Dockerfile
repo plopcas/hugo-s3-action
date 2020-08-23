@@ -1,5 +1,5 @@
-FROM banst/awscli
+FROM pahud/awscli:with-bash
 
-COPY entrypoint.sh /entrypoint.sh
+COPY entrypoint.sh /
 
 ENTRYPOINT ["/entrypoint.sh"]
