@@ -1,0 +1,9 @@
+name: 'Hugo S3'
+description: 'Deploy Hugo with an S3 target'
+author: 'Pedro Lopez'
+branding:
+  icon: 'book'
+  color: 'purple'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
