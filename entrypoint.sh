@@ -44,7 +44,11 @@ cd ${GITHUB_WORKSPACE}
 hugo version || exit 1
 
 # Build
-hugo
+if [ "$MINIFY" = "true" ]; then
+  hugo --minify
+else
+  hugo
+fi
 
 # Deploy as configured in your repo
 hugo deploy
