@@ -1,4 +1,4 @@
-FROM pahud/awscli-v2:node-lts
+FROM public.ecr.aws/aws-cli/aws-cli:latest
 
 RUN yum update -y && \
     yum install -y curl jq
