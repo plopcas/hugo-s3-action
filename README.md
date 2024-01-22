@@ -29,6 +29,7 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           MINIFY: 'true'
+          source_dir: site # optional, defines the folder where the hugo site may be located
 ```
 
 ## Configuration
@@ -41,6 +42,7 @@ AWS_REGION | Yes | AWS region
 AWS_ACCESS_KEY_ID | Yes | Access key with permissions to execute your deployment
 AWS_SECRET_ACCESS_KEY | Yes | Secret key
 MINIFY | No | Applies asset minification
+source_dir | No | Allows for user-defined source directory to run `hugo deploy` from
 
 Information about how to configure a deployment to S3 in Hugo can be found here https://gohugo.io/hosting-and-deployment/hugo-deploy/.
 

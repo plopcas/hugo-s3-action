@@ -51,7 +51,11 @@ else
 fi
 
 # Deploy as configured in your repo
-hugo deploy
+if [ ! -z "$source_dir" ]; then
+  hugo deploy --source $source_dir
+else
+  hugo deploy
+fi
 
 # Clear out credentials after we're done
 # We need to re-run `aws configure` with bogus input instead of
