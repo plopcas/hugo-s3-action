@@ -23,12 +23,13 @@ jobs:
         uses: actions/checkout@master
           
       - name: Deploy site
-        uses: plopcas/hugo-s3-action@v1.3.0
+        uses: plopcas/hugo-s3-action@v1.4.1
         env:
           AWS_REGION: 'eu-west-2'
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           MINIFY: 'true'
+          HUGO_VERSION:'latest'
 ```
 
 ## Configuration
@@ -41,6 +42,7 @@ AWS_REGION | Yes | AWS region
 AWS_ACCESS_KEY_ID | Yes | Access key with permissions to execute your deployment
 AWS_SECRET_ACCESS_KEY | Yes | Secret key
 MINIFY | No | Applies asset minification
+HUGO_VERSION | No | Installs the provided version of Hugo. If not passed or passed as `latest` it will install the latest version. The leading `v` is optional.
 
 Information about how to configure a deployment to S3 in Hugo can be found here https://gohugo.io/hosting-and-deployment/hugo-deploy/.
 
