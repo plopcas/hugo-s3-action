@@ -1,4 +1,4 @@
-name: 'Hugo S3'
+name: 'Hugo S3 Deploy'
 description: 'Deploy Hugo with an S3 target'
 author: 'Pedro Lopez'
 branding:
