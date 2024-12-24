@@ -35,9 +35,31 @@ text
 EOF
 
 # Install Hugo
-HUGO_VERSION=$(curl -s https://api.github.com/repos/gohugoio/hugo/releases/latest | jq -r '.tag_name')
+if [ -z "$HUGO_VERSION" ] || [ "latest" = "$HUGO_VERSION" ]; then
+  # Getting the latest Hugo version when HUGO_VERSION is not set or passed with value of "latest"
+  # https://github.com/gohugoio/hugo/releases/tag/v0.137.0
+  # Note that we have no longer build the deploy feature in the standard and extended archives. If you need that,
+  # download archives with withdeploy in the filename.
+  HUGO_VERSION=$(curl -s https://api.github.com/repos/gohugoio/hugo/releases/latest | jq -r '.tag_name')
+fi
+
+# Removing the 'v' prefix if present
+HUGO_VERSION="${HUGO_VERSION#v}"
+
+# Compare versions against specific version that requires a different binary
+HUGO_MINIMUM_VERSION_WITHDEPLOY="0.137.0"
+HIGHER_HUGO_VERSION=$(echo "${HUGO_VERSION}" "${HUGO_MINIMUM_VERSION_WITHDEPLOY}" | tr " " "\n" | sort -rV | head -n 1)
+
+if [ "$HIGHER_HUGO_VERSION" ==  "$HUGO_VERSION" ]; then
+  # HUGO_VERSION is the same or higher than the HUGO_MINIMUM_VERSION_WITHDEPLOY
+  HUGO_EDITION='hugo_extended_withdeploy'
+else
+  # HUGO_VERSION is lower than the HUGO_MINIMUM_VERSION_WITHDEPLOY
+  HUGO_EDITION='hugo_extended'
+fi
+
 mkdir tmp/ && cd tmp/
-curl -sSL https://github.com/gohugoio/hugo/releases/download/${HUGO_VERSION}/hugo_extended_${HUGO_VERSION:1}_Linux-64bit.tar.gz | tar -xvzf-
+curl -sSL https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/${HUGO_EDITION}_${HUGO_VERSION}_Linux-64bit.tar.gz | tar -xvzf-
 mv hugo /usr/local/bin/
 cd .. && rm -rf tmp/
 cd ${GITHUB_WORKSPACE}
